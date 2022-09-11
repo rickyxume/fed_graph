@@ -1,0 +1,68 @@
+use_gpu: True
+device: 0
+seed: 2022
+early_stop:
+  patience: 20
+  improve_indicator_mode: mean
+  the_smaller_the_better: False
+federate:
+  mode: 'standalone'
+  make_global_eval: False
+  total_round_num: 200
+  share_local_model: False
+  client_num: 13
+data:
+  root: data/
+  type: cikmcup
+  # loader: graphsaint-rw
+  # batch_size: 256
+  # splits: [0.5, 0.2, 0.3]
+model:
+  type: gin
+  hidden: 64
+  layer: 3
+  dropout: 0.3
+# fedsageplus:
+#   a: 1.0
+#   b: 1.0
+#   c: 1.0
+#   fedgen_epoch: 200
+#   gen_hidden: 128
+#   hide_portion: 0.5
+#   loc_epoch: 1
+#   num_pred: 5
+# finetune:
+#   batch_or_epoch: epoch
+#   before_eval: False
+#   local_update_steps: 1
+#   optimizer:
+#     lr: 0.0001
+#     type: SGD
+personalization:
+  # K: 5
+  # beta: 1.0
+  # local_param: ['encoder_atom', 'encoder', 'clf']
+  local_param: [ 'encoder_atom', 'encoder', 'clf', 'norms' ]  # pre, post + FedBN
+  # local_update_steps: 1
+  lr: 0.001
+  # regular_weight: 0.001
+  # share_non_trainable_para: False
+
+train:
+  batch_or_epoch: epoch
+  local_update_steps: 1
+  optimizer:
+    lr: 0.001
+    type: Adam
+    weight_decay: 1e-06
+trainer:
+  type: graphminibatch_trainer
+eval:
+  freq: 5
+  metrics: ['imp_ratio']
+  report: ['avg']
+  best_res_update_round_wise_key: val_imp_ratio
+  count_flops: False
+  base: 0.
+wandb:
+  use: False

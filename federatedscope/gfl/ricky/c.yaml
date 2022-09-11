@@ -1,0 +1,351 @@
+client_1:
+  model:
+    out_channels: 2
+    type: gin
+    task: graphClassification
+    dropout: 0.3
+    hidden: 128
+    layer: 5
+    # jk_mode: 'last'
+    use_random_feature: False
+  criterion:
+    type: CrossEntropyLoss
+  train:
+    optimizer:
+      # lr: 0.0001
+      type: Adam
+      weight_decay: 0.000001
+  grad:
+    grad_clip: 5
+  eval:
+    freq: 5
+    base: 0.263789
+  # data:
+  #   batch_size: 512
+    # augment: 'NodeSam'
+  early_stop:
+    patience: 800
+client_2:
+  model:
+    out_channels: 2
+    type: gin
+    task: graphClassification
+    dropout: 0.3
+    hidden: 128
+    layer: 6
+    # jk_mode: 'last'
+    use_random_feature: False
+  criterion:
+    type: CrossEntropyLoss
+  train:
+    optimizer:
+      # lr: 0.0001
+      type: Adam
+      weight_decay: 0.000001
+  grad:
+    grad_clip: 5
+  eval:
+    freq: 5
+    base: 0.289617
+  # data:
+  #   batch_size: 512
+  #   augment: 'NodeSam'
+  early_stop:
+    patience: 800
+client_3:
+  model:
+    out_channels: 2
+    type: gin
+    task: graphClassification
+    dropout: 0.3
+    hidden: 128
+    layer: 9
+    # jk_mode: 'cat'
+    use_random_feature: False
+  criterion:
+    type: CrossEntropyLoss
+  train:
+    optimizer:
+      # lr: 0.001
+      type: Adam
+      weight_decay: 0.000001
+  grad:
+    grad_clip: 5
+  eval:
+    freq: 5
+    base: 0.355404
+  # data:
+  #   batch_size: 256
+  #   augment: 'NodeSam'
+  early_stop:
+    patience: 800
+client_4:
+  model:
+    out_channels: 2
+    type: gin
+    task: graphClassification
+    dropout: 0.3
+    hidden: 64
+    layer: 6
+    # jk_mode: 'last'
+    use_random_feature: False
+  criterion:
+    type: CrossEntropyLoss
+  train:
+    optimizer:
+      # lr: 0.001
+      type: Adam
+      weight_decay: 0.000001
+  grad:
+    grad_clip: 5
+  eval:
+    freq: 5
+    base: 0.176471
+  # data:
+  #   batch_size: 64
+  #   augment: 'NodeSam'
+  early_stop:
+    patience: 800
+client_5:
+  model:
+    out_channels: 2
+    type: gin
+    task: graphClassification
+    dropout: 0.3
+    hidden: 512
+    layer: 5
+    # jk_mode: 'last'
+    use_random_feature: False
+  criterion:
+    type: CrossEntropyLoss
+  train:
+    optimizer:
+      # lr: 0.00001
+      type: Adam
+      weight_decay: 0.000001
+  grad:
+    grad_clip: 5
+  # data:
+  #   batch_size: 512
+  #   augment: 'NodeSam'
+  early_stop:
+    patience: 800
+  eval:
+    freq: 5
+    base: 0.396825
+client_6:
+  model:
+    out_channels: 2
+    type: gin
+    task: graphClassification
+    dropout: 0.3
+    hidden: 128
+    layer: 5
+    # jk_mode: 'last'
+    use_random_feature: False
+  criterion:
+    type: CrossEntropyLoss
+  train:
+    optimizer:
+      # lr: 0.01
+      type: Adam
+      weight_decay: 0.000001
+  grad:
+    grad_clip: 5
+  # data:
+  #   batch_size: 512
+  #   augment: 'NodeSam'
+  early_stop:
+    patience: 800
+  eval:
+    freq: 5
+    base: 0.261580
+client_7:
+  model:
+    out_channels: 2
+    type: gin
+    task: graphClassification
+    dropout: 0.3
+    hidden: 128
+    layer: 6
+    # jk_mode: 'last'
+    use_random_feature: False
+  criterion:
+    type: CrossEntropyLoss
+  train:
+    optimizer:
+      # lr: 0.001
+      type: Adam
+      weight_decay: 0.000001
+  grad:
+    grad_clip: 5
+  # data:
+  #   batch_size: 512
+  #   augment: 'NodeSam'
+  early_stop:
+    patience: 800
+  eval:
+    freq: 5
+    base: 0.302378
+client_8:
+  model:
+    out_channels: 2
+    type: gin
+    task: graphClassification
+    dropout: 0.3
+    hidden: 256
+    layer: 6
+    # jk_mode: 'last'
+    use_random_feature: False
+  criterion:
+    type: CrossEntropyLoss
+  train:
+    optimizer:
+      # lr: 0.001
+      type: Adam
+      weight_decay: 0.000001
+  grad:
+    grad_clip: 5
+  # data:
+  #   batch_size: 512
+  #   augment: 'NodeSam'
+  early_stop:
+    patience: 800
+  eval:
+    freq: 5
+    base: 0.211538
+client_9:
+  model:
+    out_channels: 1
+    task: graphRegression
+    type: gin
+    dropout: 0.3
+    hidden: 512
+    layer: 3
+    # jk_mode: 'last'
+    use_random_feature: False
+  criterion:
+    type: MSELoss
+  train:
+    optimizer:
+      # lr: 0.001
+      type: Adam
+      weight_decay: 0.000001
+  grad:
+    grad_clip: 5
+  # data:
+  #   batch_size: 64
+  #   augment: ''
+  early_stop:
+    patience: 500
+  eval:
+    freq: 5
+    base: 0.059199
+client_10:
+  model:
+    out_channels: 10
+    task: graphRegression
+    type: gin
+    dropout: 0.3
+    hidden: 256
+    layer: 3
+    # jk_mode: 'last'
+    use_random_feature: False
+  criterion:
+    type: MSELoss
+  train:
+    optimizer:
+      # lr: 0.0001
+      type: Adam
+      weight_decay: 0.000001
+  grad:
+    grad_clip: 5
+  # data:
+  #   batch_size: 64
+  #   augment: ''
+  early_stop:
+    patience: 500
+  eval:
+    freq: 5
+    base: 0.007083
+client_11:
+  model:
+    out_channels: 1
+    task: graphRegression
+    type: gin
+    dropout: 0.3
+    hidden: 128
+    layer: 3
+    # jk_mode: 'last'
+    use_random_feature: False
+  criterion:
+    type: MSELoss
+  train:
+    optimizer:
+      # lr: 0.001
+      type: Adam
+      weight_decay: 0.000001
+  grad:
+    grad_clip: 5
+  # data:
+  #   batch_size: 64
+  #   augment: ''
+  early_stop:
+    patience: 500
+  eval:
+    freq: 5
+    base: 0.734011
+client_12:
+  model:
+    out_channels: 1
+    task: graphRegression
+    type: gin
+    dropout: 0.3
+    hidden: 256
+    layer: 3
+    # jk_mode: 'last'
+    use_random_feature: False
+  criterion:
+    type: MSELoss
+  train:
+    optimizer:
+      # lr: 0.0001
+      type: Adam
+      weight_decay: 0.000001
+  grad:
+    grad_clip: 5
+  # data:
+  #   batch_size: 64
+  #   augment: ''
+  early_stop:
+    patience: 500
+  eval:
+    freq: 5
+    base: 1.361326
+client_13:
+  model:
+    out_channels: 12
+    task: graphRegression
+    type: gin
+    dropout: 0.3
+    hidden: 256
+    layer: 3
+    # jk_mode: 'last'
+    use_random_feature: False
+  criterion:
+    type: MSELoss
+  train:
+    optimizer:
+      # lr: 0.0001
+      type: Adam
+      weight_decay: 0.000001
+  grad:
+    grad_clip: 5
+  # data:
+  #   batch_size: 64
+  #   augment: ''
+  early_stop:
+    patience: 500
+  eval:
+    freq: 5
+    base: 0.004389

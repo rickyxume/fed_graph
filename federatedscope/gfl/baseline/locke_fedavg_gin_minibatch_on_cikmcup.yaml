@@ -1,0 +1,55 @@
+use_gpu: True
+device: 0
+seed: 2022
+early_stop:
+  patience: 10
+  improve_indicator_mode: mean
+  the_smaller_the_better: False
+federate:
+  mode: 'standalone'
+  make_global_eval: False
+  total_round_num: 10
+  share_local_model: False
+  client_num: 8
+  use_diff: False
+  data_weighted_aggr: True
+data:
+  root: data/
+  type: cikmcup
+  batch_size: 64
+model:
+  type: gin
+  hidden: 64
+  layer: 3
+  dropout: 0.3
+  task: node
+personalization:
+  local_param: ['encoder_atom', 'encoder', 'clf', 'norms']
+train:
+  batch_or_epoch: epoch
+  local_update_steps: 1
+  optimizer:
+    weight_decay: 0.0005
+    type: Adam
+    lr: 0.01
+trainer:
+  type: graphminibatch_trainer
+#finetune:
+#  before_eval: True
+#  local_update_steps: 3
+#  batch_or_epoch: 'epoch'
+#  optimizer:
+#    type: Adam
+#    lr: 0.001
+eval:
+  freq: 1
+  metrics: ['imp_ratio']
+  report: ['avg']
+  best_res_update_round_wise_key: val_imp_ratio
+  count_flops: False
+  base: 0.
+wandb:
+  use: True
+  name_user: jiahuanluo
+  name_project: cikm
+  client_train_info: True

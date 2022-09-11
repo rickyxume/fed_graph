@@ -1,0 +1,66 @@
+# nohup python federatedscope/main.py --cfg federatedscope/gfl/ricky/a.yaml --client_cfg federatedscope/gfl/ricky/c.yaml federate.client_num 8 model.jk_mode cat data.augment DropNode data.use_aug_val_in_training_set False > 082.log 2>&1 &
+use_gpu: True
+seed: 2022
+device: 0
+early_stop:
+  patience: 9999
+  improve_indicator_mode: mean
+  the_smaller_the_better: False
+federate:
+  mode: standalone
+  method: local
+  total_round_num: 100
+  client_num: 13
+  make_global_eval: False
+  share_local_model: False
+data:
+  batch_size: 512
+  root: data/
+  type: cikmcup
+  # augment: 'NodeSam' #add augmented val_data into training set; 
+  # ['NodeSam','MotifSwap','DropEdge', 'DropNode', 'ChangeAttr', 'AddEdge', 'NodeAug']
+  # splits: [0.8, 0.1, 0.1]
+  consistent_label_distribution: True #默认false
+model:
+  type: gin
+  hidden: 256
+  layer: 9
+  dropout: 0.3
+  # jk_mode: 'cat'
+  use_random_feature: False
+# personalization:
+#   local_param: ['encoder_atom', 'encoder', 'clf']
+train:
+  batch_or_epoch: epoch
+  local_update_steps: 1
+  optimizer:
+    weight_decay: 0.0005
+    type: Adam
+    lr: 0.001
+  lr_scheduler: 
+    type: StepLR  # StepLR, ExponentialLR, ReduceLROnPlateau
+    gamma: 0.5
+    step_size: 50  # epoch
+trainer:
+  type: graphminibatch_trainer
+# finetune:
+
+eval:
+  freq: 1
+  metrics: ['imp_ratio']
+  report: ['avg']
+  best_res_update_round_wise_key: val_imp_ratio
+  count_flops: False
+  base: 0.
+wandb:
+  use: True
+  name_user: rickyxu
+  client_train_info: True
+  name_project: ricky_t1
+outdir: 'ricky_t1'
+# hpo:
+#   fedex:
+#     use: True
+# #    ss: 'federatedscope/example_configs/fedex_flat_search_space.yaml'
+#     ss: 'federatedscope/gfl/ricky/fedex_grid_search_space.yaml'
+#     diff: True

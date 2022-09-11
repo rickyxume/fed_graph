@@ -1,0 +1,41 @@
+use_gpu: True
+device: 0
+early_stop:
+  patience: 100
+  improve_indicator_mode: mean
+  the_smaller_the_better: False
+federate:
+  mode: standalone
+  method: local
+  make_global_eval: False
+  total_round_num: 100
+  share_local_model: False
+  client_num: 13
+data:
+  batch_size: 128
+  root: data/
+  type: cikmcup
+model:
+  type: gin
+  hidden: 128
+personalization:
+  local_param: ['encoder_atom', 'encoder', 'clf']
+train:
+  batch_or_epoch: epoch
+  local_update_steps: 1
+  optimizer:
+    weight_decay: 0.0005
+    type: Adam
+    lr: 0.01
+trainer:
+  type: graphminibatch_trainer
+eval:
+  freq: 1
+  report: ['avg']
+  best_res_update_round_wise_key: val_loss
+  count_flops: False
+wandb:
+  use: True
+  name_user: jiahuanluo
+  name_project: cikm
+  client_train_info: True

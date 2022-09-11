@@ -1,0 +1,41 @@
+use_gpu: True
+seed: 2022
+early_stop:
+  patience: 300
+  improve_indicator_mode: mean
+  the_smaller_the_better: False
+federate:
+  mode: 'standalone'
+  make_global_eval: False
+  total_round_num: 500
+  share_local_model: False
+  client_num: 13
+data:
+  root: data/
+  type: cikmcup
+model:
+  type: gin
+  hidden: 64
+  layer: 3
+  dropout: 0.3
+train:
+  batch_or_epoch: epoch
+  local_update_steps: 1
+  optimizer:
+    lr: 1e-6
+    type: Adam
+    weight_decay: 1e-06
+trainer:
+  type: graphminibatch_trainer
+eval:
+  freq: 1
+  metrics: ['imp_ratio']
+  report: ['avg']
+  best_res_update_round_wise_key: val_imp_ratio
+  count_flops: False
+  base: 0.
+wandb:
+  use: True
+  name_user: jiahuanluo
+  name_project: cikm_grid_search
+  client_train_info: True
