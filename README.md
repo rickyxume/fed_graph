@@ -1,4 +1,5 @@
 Team name:
+
 联邦对不队
 
 1. Preparing the federatedscope environment
@@ -15,5 +16,5 @@ Our team's code execution environment is Centos, GPU is V100 with 32G RAM.
 
 All clients are trained based on the GIN model by isolated training (no federated learning methods are used)
 
-GIN refer from Graph Isomorphism Network model from the "How Powerful are Graph
-    Neural Networks?" paper, in ICLR'19
+References:
+> GIN refer from Graph Isomorphism Network model from the "How Powerful are Graph Neural Networks?" paper, in ICLR'19
