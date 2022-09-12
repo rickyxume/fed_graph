@@ -14,7 +14,8 @@ Our team's code execution environment is Centos, GPU is V100 with 32G RAM.
 
 3. Brief introduction of the developed algorithm:
 
-All clients are trained based on the GIN model by isolated training (no federated learning methods are used)
+All clients are trained based on the GIN model by isolated training (no federated learning methods are used).
+The best model for each clietnt will be saved according to val_improtve_ratio.
 
 References:
 > GIN refer from Graph Isomorphism Network model from the "How Powerful are Graph Neural Networks?" paper, in ICLR'19
